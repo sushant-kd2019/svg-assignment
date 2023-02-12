@@ -55,7 +55,7 @@ exports.swaggerDocument = {
             name: "sortBy",
             description: "The attribute to be sorted by.",
             type: "string",
-            default: "publishedAt",
+            default: "publishedDate",
           },
           {
             in: "query",
@@ -83,29 +83,16 @@ exports.swaggerDocument = {
             description: "Internal server error.",
           },
         },
-        parameters: [
-          {
-            in: "body",
-            name: "name",
-            description: "Enter name of the game.",
-            required: "true",
-            type: "string",
+        parameters: [],
+        requestBody: {
+          content: {
+            "application/json": {
+              schema: {
+                $ref: "#/definitions/Game",
+              },
+            },
           },
-          {
-            in: "body",
-            name: "url",
-            description: "Enter url of the game.",
-            required: "true",
-            type: "string",
-          },
-          {
-            in: "body",
-            name: "author",
-            description: "Enter author of the game.",
-            required: "true",
-            type: "string",
-          },
-        ],
+        },
       },
     },
     "/games/{gameId}": {
@@ -135,6 +122,7 @@ exports.swaggerDocument = {
       },
       patch: {
         tags: ["Games"],
+        required: ["gameId"],
         summary: "Update individual game.",
         responses: {
           400: {
@@ -158,28 +146,16 @@ exports.swaggerDocument = {
             required: "true",
             type: "string",
           },
-          {
-            in: "body",
-            name: "name",
-            description: "Enter new name of the game.",
-            required: "false",
-            type: "string",
-          },
-          {
-            in: "body",
-            name: "url",
-            description: "Enter new url of the game.",
-            required: "false",
-            type: "string",
-          },
-          {
-            in: "body",
-            name: "author",
-            description: "Enter new author of the game.",
-            required: "false",
-            type: "string",
-          },
         ],
+        requestBody: {
+          content: {
+            "application/json": {
+              schema: {
+                $ref: "#/definitions/Game",
+              },
+            },
+          },
+        },
       },
       delete: {
         tags: ["Games"],
@@ -204,6 +180,26 @@ exports.swaggerDocument = {
             type: "string",
           },
         ],
+      },
+    },
+  },
+  definitions: {
+    Game: {
+      type: "object",
+      content: "application/x-www-form-urlencoded",
+      properties: {
+        name: {
+          type: "string",
+          description: "Enter new name of the game.",
+        },
+        url: {
+          type: "string",
+          description: "Enter new url of the game.",
+        },
+        author: {
+          type: "string",
+          description: "Enter new author of the game.",
+        },
       },
     },
   },

@@ -71,6 +71,7 @@ exports.getAllGames = async (req, res) => {
 //get individual game.
 exports.getGame = async (req, res) => {
   let gameId = req.params.gameId;
+  if (!gameId) return res.status(400).send({ message: "gameId is required." });
   let gameExists = await ifGameExistsThenReturn(res, gameId);
   if (gameExists.length > 0)
     return res.status(200).send(util.procesMongoObject(gameExists[0]));
@@ -79,6 +80,7 @@ exports.getGame = async (req, res) => {
 //update individual game.
 exports.updateGame = async (req, res) => {
   let gameId = req.params.gameId;
+  if (!gameId) return res.status(400).send({ message: "gameId is required." });
   let gameExists = await ifGameExistsThenReturn(res, gameId);
   if (gameExists.length == 0) return;
   let updateQuery = {};
@@ -111,6 +113,7 @@ exports.updateGame = async (req, res) => {
 //delete individual game.
 exports.deleteGame = async (req, res) => {
   let gameId = req.params.gameId;
+  if (!gameId) return res.status(400).send({ message: "gameId is required." });
   let gameExists = await ifGameExistsThenReturn(res, gameId);
   if (gameExists.length == 0) return;
 
