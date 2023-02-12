@@ -1,5 +1,6 @@
 # SVG Assignment
-This is an assignment submitted in response to the SVG backend task.
+This is an assignment submitted in response to the SVG backend task. \
+https://svg-assignment-production.up.railway.app/api
 
 ## End Points:
 /games \
@@ -11,4 +12,4 @@ GET \
 PATCH \
 DELETE
 
-For more information see /api to access swagger.
+For more information, check the given link.
